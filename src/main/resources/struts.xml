@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="library" namespace="/library" extends="struts-default">
+
+        <default-action-ref name="search"/>
+
+        <action name="search" class="com.greymon.library.SearchAction" method="execute">
+            <result>/WEB-INF/library/search.jsp</result>
+        </action>
+
+        <action name="detail" class="com.greymon.library.BookInfoAction" method="execute">
+            <result>/WEB-INF/library/detail.jsp</result>
+        </action>
+
+        <action name="manage" class="com.greymon.library.BookManageAction" method="execute">
+            <result>/WEB-INF/library/manage.jsp</result>
+        </action>
+
+        <action name="editSubmit" class="com.greymon.library.Bookedit" method="edit">
+            <result>/WEB-INF/library/detail.jsp</result>
+        </action>
+
+        <action name="createSubmit" class="com.greymon.library.Bookcreat" method="create">
+            <result>/WEB-INF/library/detail.jsp</result>
+        </action>
+
+        <action name="delete" class="com.greymon.library.Bookdel" method="delete">
+            <result>/WEB-INF/library/detail.jsp</result>
+        </action>
+
+        <action name="deleteSubmit" class="com.greymon.library.Bookdel" method="deleteSubmit">
+            <result>/WEB-INF/library/detail.jsp</result>
+        </action>
+
+        <action name="amanage" class="com.greymon.library.AuthorManageAction" method="execute">
+            <result>/WEB-INF/library/amanage.jsp</result>
+        </action>
+
+        <action name="aEditSubmit" class="com.greymon.library.AuthorManageAction" method="edit">
+            <result>/WEB-INF/library/adetail.jsp</result>
+        </action>
+
+        <action name="aCreateSubmit" class="com.greymon.library.AuthorManageAction" method="create">
+            <result>/WEB-INF/library/adetail.jsp</result>
+        </action>
+    </package>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index"/>
+
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">search</param>
+                <param name="namespace">/library</param>
+            </result>
+        </action>
+
+    </package>
+
+    <!-- Add addition packages and configuration here. -->
+</struts>
